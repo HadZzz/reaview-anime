@@ -48,6 +48,23 @@
                                 </p>
                             </div>
 
+                            @auth
+                                <div class="mt-4">
+                                    <form action="{{ route('watchlist.store', $anime['mal_id']) }}" method="POST" class="flex">
+                                        @csrf
+                                        <select name="status" class="rounded-l-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                                            <option value="planning">Plan to Watch</option>
+                                            <option value="watching">Watching</option>
+                                            <option value="completed">Completed</option>
+                                            <option value="dropped">Dropped</option>
+                                        </select>
+                                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-r-md hover:bg-indigo-700">
+                                            Add to Watchlist
+                                        </button>
+                                    </form>
+                                </div>
+                            @endauth
+
                             <div class="mt-6">
                                 <h3 class="text-xl font-semibold">Synopsis</h3>
                                 <p class="mt-2 text-gray-600">{{ $anime['synopsis'] }}</p>
